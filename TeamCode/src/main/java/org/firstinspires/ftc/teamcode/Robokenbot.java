@@ -40,14 +40,14 @@ public class Robokenbot
     public DcMotor motorRearRight; // motor 4
     public Servo claw;
     public CRServo arm;
-    public DigitalChannel digitalTouch;  // Hardware Device Object
+//    public DigitalChannel digitalTouch;  // Hardware Device Object
     public ColorSensor sensorColor;
     public DistanceSensor sensorDistance;
-    public CRServo intakeServo1;
-    public CRServo intakeServo2;
+//    public CRServo intakeServo1;
+//    public CRServo intakeServo2;
     public ColorSensor bottomSensorColor;
-    public Servo capstoneServo;
-    public CRServo armMotor;
+//    public Servo capstoneServo;
+//    public CRServo armMotor;
 
     private ElapsedTime     runtime = new ElapsedTime();
 
@@ -88,12 +88,12 @@ public class Robokenbot
         // get a reference to the distance sensor that shares the same name.
         sensorDistance = hwMap.get(DistanceSensor.class, "sensor_color_distance");
 
-        claw = hwMap.servo.get("servo");
+        claw = hwMap.servo.get("claw");
         arm=hwMap.crservo.get("arm");
-        intakeServo1=hwMap.crservo.get("intakeServo1");
-        intakeServo2=hwMap.crservo.get("intakeServo2");
-        capstoneServo=hwMap.servo.get("capstone");
-        armMotor = hwMap.crservo.get("armMotor");
+//        intakeServo1=hwMap.crservo.get("intakeServo1");
+//        intakeServo2=hwMap.crservo.get("intakeServo2");
+//        capstoneServo=hwMap.servo.get("capstone");
+//        armMotor = hwMap.crservo.get("armMotor");
 
         motorFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -302,7 +302,7 @@ public class Robokenbot
         //stopDriving();
     }
 
-
+/*
     public void driveTillTouched(double power) {
         while (digitalTouch.getState() == true) {
             driveForward(power);
@@ -310,7 +310,7 @@ public class Robokenbot
         // don't we need to add stopDriving() ?
         //stopDriving();
     }
-
+*/
     public void driveTillThisClose(double power, double distance) {
         double howfar;
 

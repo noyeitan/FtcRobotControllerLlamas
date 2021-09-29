@@ -186,6 +186,8 @@ public class Teleop extends LinearOpMode {
             {
                 ArmSpeedControl = 0.5;
             }
+
+            /*
             if (gamepad2.dpad_up){
                 robot.intakeServo1.setDirection(CRServo.Direction.FORWARD);
                 robot.intakeServo2.setDirection(CRServo.Direction.REVERSE);
@@ -226,10 +228,13 @@ public class Teleop extends LinearOpMode {
 
             }
 
+
+
             robot.armMotor.setPower(gamepad2.left_stick_y);
 
             robot.capstoneServo.setPosition(1-0.6*gamepad2.right_trigger);
             telemetry.update();
+             */
         }
 
         // Set the panel back to the default color
