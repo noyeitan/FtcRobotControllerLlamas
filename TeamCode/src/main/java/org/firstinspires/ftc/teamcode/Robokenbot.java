@@ -40,14 +40,10 @@ public class Robokenbot
     public DcMotor motorRearRight; // motor 4
     public Servo claw;
     public CRServo arm;
-//    public DigitalChannel digitalTouch;  // Hardware Device Object
     public ColorSensor sensorColor;
     public DistanceSensor sensorDistance;
-//    public CRServo intakeServo1;
-//    public CRServo intakeServo2;
     public ColorSensor bottomSensorColor;
-//    public Servo capstoneServo;
-//    public CRServo armMotor;
+
 
     private ElapsedTime     runtime = new ElapsedTime();
 
@@ -79,7 +75,6 @@ public class Robokenbot
         motorRearLeft = hwMap.dcMotor.get("motorRearLeft");
         motorFrontRight = hwMap.dcMotor.get("motorFrontRight");
         motorRearRight = hwMap.dcMotor.get("motorRearRight");
-        //       digitalTouch = hardwareMap.get(DigitalChannel.class, "sensor_digital");
 
         // get a reference to the color sensor.
         sensorColor = hwMap.get(ColorSensor.class, "sensor_color_distance");
@@ -90,10 +85,7 @@ public class Robokenbot
 
         claw = hwMap.servo.get("claw");
         arm=hwMap.crservo.get("arm");
-//        intakeServo1=hwMap.crservo.get("intakeServo1");
-//        intakeServo2=hwMap.crservo.get("intakeServo2");
-//        capstoneServo=hwMap.servo.get("capstone");
-//        armMotor = hwMap.crservo.get("armMotor");
+
 
         motorFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         motorFrontRight.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
@@ -282,43 +274,32 @@ public class Robokenbot
     public void driveForwardByTime(double power, long time) throws InterruptedException {
         driveForward(power);
         Thread.sleep(time);
-        // don't we need to add stopDriving() ?
-        //stopDriving();
+        stopDriving();
 
     }
 
     public void turnLeftByTime(double power, long time) throws InterruptedException {
         turnLeft(power);
         Thread.sleep(time);
-        // don't we need to add stopDriving() ?
-        //stopDriving();
+        stopDriving();
 
     }
 
     public void turnRightByTime(double power, long time) throws InterruptedException {
         turnRight(power);
         Thread.sleep(time);
-        // don't we need to add stopDriving() ?
-        //stopDriving();
+        stopDriving();
     }
 
-/*
-    public void driveTillTouched(double power) {
-        while (digitalTouch.getState() == true) {
-            driveForward(power);
-        }
-        // don't we need to add stopDriving() ?
-        //stopDriving();
-    }
-*/
+
     public void driveTillThisClose(double power, double distance) {
         double howfar;
 
         while (Double.isNaN(sensorDistance.getDistance(DistanceUnit.CM)) || sensorDistance.getDistance(DistanceUnit.CM) > distance) {
             driveForward(power);
         }
-        // don't we need to add stopDriving() ?
-        //stopDriving();
+
+        stopDriving();
     }
 
     public void strafeRight (double power)
@@ -339,48 +320,29 @@ public class Robokenbot
     public void strafeLeftByTime(double power, long time) throws InterruptedException {
         strafeLeft(power);
         Thread.sleep(time);
-        // don't we need to add stopDriving() ?
-        //stopDriving();
+        stopDriving();
     }
 
     public void strafeRightByTime(double power, long time) throws InterruptedException {
         strafeRight(power);
         Thread.sleep(time);
-        // don't we need to add stopDriving() ?
-        //stopDriving();
+        stopDriving();
     }
 
-    // IMU sample from STEMRobotics educational example
-
-    /*  for auto-correction while driving, using this pseudocode
-
-            while (opModeIsActive())
-        {
-            // Use gyro to drive in a straight line.
-            correction = checkDirection();
-
-            telemetry.addData("1 imu heading", lastAngles.firstAngle);
-            telemetry.addData("2 global heading", globalAngle);
-            telemetry.addData("3 correction", correction);
-            telemetry.update();
-
-            leftMotor.setPower(power - correction);  // this is for regular motors. adapt for mech.
-            rightMotor.setPower(power + correction);
-
-     */
 
 
 
 
-    /**
-     * Resets the cumulative angle tracking to zero.
-     */
+
+    //Resets the cumulative angle tracking to zero.
     public void resetAngle()
     {
         lastAngles = imu.getAngularOrientation(AxesReference.INTRINSIC, AxesOrder.ZYX, AngleUnit.DEGREES);
 
         globalAngle = 0;
     }
+
+
 
     /**
      * Get current cumulative angle rotation from last reset.
@@ -409,6 +371,7 @@ public class Robokenbot
         return globalAngle;
     }
 
+
     /**
      * See if we are moving in a straight line and if not return a power correction value.
      * @return Power adjustment, + is adjust left - is adjust right.
@@ -431,6 +394,7 @@ public class Robokenbot
 
         return correction;
     }
+
 
     /**
      * Rotate left or right the number of degrees. Does not support turning more than 180 degrees.

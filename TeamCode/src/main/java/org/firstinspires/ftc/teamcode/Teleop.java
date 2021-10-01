@@ -91,6 +91,9 @@ public class Teleop extends LinearOpMode {
             double G1leftStickY = gamepad1.left_stick_y;
             float G1rightTrigger = gamepad1.right_trigger;
             float G1leftTrigger = gamepad1.left_trigger;
+
+
+            //Driver 1 wheel speed control
             if (gamepad1.dpad_up) {
                 speed_control = 1;
                 telemetry.addData("Status", "Setting Speed to 1");    //
@@ -112,8 +115,11 @@ public class Teleop extends LinearOpMode {
                 telemetry.update();
             }
 
+
+
             if (G1rightTrigger > 0 && G1leftTrigger == 0) {
 
+                //Strafe Right
                 robot.motorFrontLeft.setPower(-G1rightTrigger * speed_control);
                 robot.motorRearLeft.setPower(G1rightTrigger * speed_control);
                 robot.motorFrontRight.setPower(G1rightTrigger * speed_control);
@@ -123,6 +129,8 @@ public class Teleop extends LinearOpMode {
                 telemetry.update();
 
             } else if (G1leftTrigger > 0 && G1rightTrigger == 0) {
+
+                //Strafe Left
                 robot.motorFrontLeft.setPower(G1leftTrigger * speed_control);
                 robot.motorRearLeft.setPower(-G1leftTrigger * speed_control);
                 robot.motorFrontRight.setPower(-G1leftTrigger * speed_control);
@@ -133,7 +141,7 @@ public class Teleop extends LinearOpMode {
 
             } else {
 
-                // how to cube  x = Math.pow(y, 3);
+                //Tank Drive
                 robot.motorFrontLeft.setPower(G1leftStickY * Math.abs(G1leftStickY) * speed_control);
                 robot.motorRearLeft.setPower(G1leftStickY * Math.abs(G1leftStickY) * speed_control);
                 robot.motorFrontRight.setPower(G1rightStickY * Math.abs(G1rightStickY)  * speed_control);
@@ -143,6 +151,8 @@ public class Teleop extends LinearOpMode {
                 telemetry.update();
 
             }
+
+            //Claw set position
             if (gamepad2.left_bumper) {
                 robot.claw.setPosition(0.0);
                 telemetry.addData("Status", "Claw");    //
@@ -157,6 +167,8 @@ public class Teleop extends LinearOpMode {
 
             }
 
+
+
             if (gamepad2.left_stick_y > 0 || gamepad2.left_stick_y < 0) {
                 robot.arm.setPower(gamepad2.left_stick_y * ArmSpeedControl+0.2);
             }
@@ -167,8 +179,6 @@ public class Teleop extends LinearOpMode {
 
             if (gamepad2.left_stick_y == 0) {
                 robot.arm.setPower(0.0);
-
-
 
             }
 
@@ -187,54 +197,7 @@ public class Teleop extends LinearOpMode {
                 ArmSpeedControl = 0.5;
             }
 
-            /*
-            if (gamepad2.dpad_up){
-                robot.intakeServo1.setDirection(CRServo.Direction.FORWARD);
-                robot.intakeServo2.setDirection(CRServo.Direction.REVERSE);
-                robot.intakeServo1.setPower(0.2);
-                robot.intakeServo2.setPower(0.2);
 
-            }
-
-            if (gamepad2.dpad_left) {
-                robot.intakeServo1.setPower(0);
-                robot.intakeServo2.setPower(0);
-            }
-
-            if (gamepad2.dpad_right) {
-                robot.intakeServo1.setPower(0);
-                robot.intakeServo2.setPower(0);
-            }
-
-
-
-            if (gamepad2.dpad_down){
-                robot.intakeServo1.setDirection(CRServo.Direction.REVERSE);
-                robot.intakeServo2.setDirection(CRServo.Direction.FORWARD);
-                robot.intakeServo1.setPower(0.2);
-                robot.intakeServo2.setPower(0.2);
-            }
-
-            if (gamepad2.x) {
-                robot.intakeServo1.setDirection(CRServo.Direction.REVERSE);
-                robot.intakeServo2.setDirection(CRServo.Direction.FORWARD);
-                robot.intakeServo1.setPower(0.2);
-                robot.intakeServo2.setPower(0.2);
-                robot.driveForward(.17);
-                sleep(1300);
-                robot.intakeServo1.setPower(0);
-                robot.intakeServo2.setPower(0);
-                robot.stopDriving();
-
-            }
-
-
-
-            robot.armMotor.setPower(gamepad2.left_stick_y);
-
-            robot.capstoneServo.setPosition(1-0.6*gamepad2.right_trigger);
-            telemetry.update();
-             */
         }
 
         // Set the panel back to the default color
