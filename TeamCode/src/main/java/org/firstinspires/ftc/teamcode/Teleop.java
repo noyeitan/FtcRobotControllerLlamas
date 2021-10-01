@@ -184,7 +184,7 @@ public class Teleop extends LinearOpMode {
 
             if (gamepad2.y)
             {
-                ArmSpeedControl = 0.6;
+                ArmSpeedControl = 1.0;
             }
 
 
@@ -192,9 +192,9 @@ public class Teleop extends LinearOpMode {
             {
                 ArmSpeedControl = 0.4;
             }
-            if (gamepad2.a)
+            if (gamepad2.b)
             {
-                ArmSpeedControl = 0.5;
+                ArmSpeedControl = 0.8;
             }
 
 
