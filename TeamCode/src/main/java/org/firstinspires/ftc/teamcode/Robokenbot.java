@@ -60,6 +60,7 @@ public class Robokenbot
     static final double     COUNTS_PER_INCH         = (SCALE_FACTOR * COUNTS_PER_MOTOR_REV * DRIVE_GEAR_REDUCTION) /
             (WHEEL_DIAMETER_INCHES * 3.1415);
     static final double     DRIVE_SPEED             = 0.3;
+    static final double     Arm_Speed               = 0.3;
 
 
     HardwareMap hwMap = null;
@@ -329,6 +330,18 @@ public class Robokenbot
         stopDriving();
     }
 
+    public void moveArmByTime(double power, long time) throws InterruptedException {
+        // power has to be above 0.3
+        arm.setPower(power);
+        Thread.sleep(time);
+        arm.setPower(0);
+    }
+
+    public void openClawByTime(double power, long time) throws InterruptedException {
+        claw.setPosition(1.0);
+
+
+    }
 
 
 
@@ -453,6 +466,6 @@ public class Robokenbot
 
         // reset angle tracking on new heading.
         resetAngle();
-    }
 
+    }
 }
