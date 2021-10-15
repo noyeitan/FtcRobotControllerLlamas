@@ -19,5 +19,10 @@ public class AutoTest extends LinearOpMode {
         robot.rotate(90, robot.DRIVE_SPEED, true, this);
         robot.driveForwardByTime(robot.DRIVE_SPEED, 500);
         robot.moveArmByTime(0.5, 1000);
+        robot.claw.setPosition(1.0);
+        robot.moveArmByTime(-0.5, 1000);
+        robot.openClawByTime(1, 1000);
+
+
     }
 }

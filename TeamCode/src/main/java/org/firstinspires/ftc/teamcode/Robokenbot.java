@@ -338,9 +338,8 @@ public class Robokenbot
     }
 
     public void openClawByTime(double power, long time) throws InterruptedException {
-        claw.setPosition(1.0);
-
-
+        claw.setPosition(power);
+        Thread.sleep(time);
     }
 
 
