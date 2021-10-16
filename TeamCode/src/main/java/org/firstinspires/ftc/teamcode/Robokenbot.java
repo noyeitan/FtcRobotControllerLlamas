@@ -43,6 +43,7 @@ public class Robokenbot
     public ColorSensor sensorColor;
     public DistanceSensor sensorDistance;
     public ColorSensor bottomSensorColor;
+    public CRServo spinner;
 
 
     private ElapsedTime     runtime = new ElapsedTime();
@@ -85,7 +86,9 @@ public class Robokenbot
         sensorDistance = hwMap.get(DistanceSensor.class, "sensor_color_distance");
 
         claw = hwMap.servo.get("claw");
-        arm=hwMap.crservo.get("arm");
+        arm = hwMap.crservo.get("arm");
+
+        spinner = hwMap.crservo.get("spinner");
 
 
         motorFrontLeft.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);

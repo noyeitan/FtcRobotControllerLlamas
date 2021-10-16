@@ -91,6 +91,8 @@ public class Teleop extends LinearOpMode {
             double G1leftStickY = gamepad1.left_stick_y;
             float G1rightTrigger = gamepad1.right_trigger;
             float G1leftTrigger = gamepad1.left_trigger;
+            float G2leftTrigger = gamepad2.left_trigger;
+            float G2rightTrigger = gamepad2.right_trigger;
 
 
             //Driver 1 wheel speed control
@@ -197,6 +199,13 @@ public class Teleop extends LinearOpMode {
                 ArmSpeedControl = 0.8;
             }
 
+            if (G2leftTrigger > 0) {
+                robot.spinner.setPower(0.3);
+            } else if (G2rightTrigger > 0) {
+                robot.spinner.setPower(-0.3);
+            } else {
+                robot.spinner.setPower(0);
+            }
 
         }
 
