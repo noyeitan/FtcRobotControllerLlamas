@@ -19,11 +19,13 @@ public class AutoDuck extends LinearOpMode {
         robot.driveForwardByTime(robot.DRIVE_SPEED, 1000);
         robot.turnLeftByTime(robot.DRIVE_SPEED, 850);
         robot.driveForwardByTime(robot.DRIVE_SPEED * 1.5, 1300);
-        robot.moveArmByTime(-0.5,   150);
+        robot.moveArmByTime(-0.3,   250);
         robot.claw.setPosition(0.0);
+        robot.moveArmByTime(0.5, 350);
         robot.driveForwardByTime(-robot.DRIVE_SPEED, 1000);
         robot.turnRightByTime(robot.DRIVE_SPEED, 3000);
-        robot.driveForwardByTime(3 * robot.DRIVE_SPEED, 3000);
+        robot.driveForwardByTime(3 * robot.DRIVE_SPEED, 1800);
+
     }
 }
 
