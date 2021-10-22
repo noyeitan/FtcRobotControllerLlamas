@@ -345,6 +345,20 @@ public class Robokenbot
         Thread.sleep(time);
     }
 
+     public void spin(boolean clockwise, long time) throws InterruptedException {
+         double power;
+         if (clockwise) {
+             power = 0.3;
+         } else {
+             power = -0.3;
+         }
+         spinner.setPower(power);
+         Thread.sleep(time);
+         spinner.setPower(0);
+     }
+
+
+
 
 
 
