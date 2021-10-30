@@ -295,6 +295,16 @@ public class Robokenbot
         stopDriving();
     }
 
+    public void turnByTime(boolean turnRight, double power, long time) throws InterruptedException {
+        if (turnRight) {
+            turnRight(power);
+        } else {
+            turnLeft(power);
+        }
+        Thread.sleep(time);
+        stopDriving();
+    }
+
 
     public void driveTillThisClose(double power, double distance) {
         double howfar;
@@ -483,5 +493,53 @@ public class Robokenbot
         // reset angle tracking on new heading.
         resetAngle();
 
+    }
+
+    public void baseDuckHubPark(boolean redTeam) throws InterruptedException {
+        int direction = 1;
+
+        if (!redTeam) {
+            direction = -1;
+        }
+
+        claw.setPosition(1.0);
+        Thread.sleep(500);
+        moveArmByTime(0.75, 2000);
+        strafeLeftByTime(direction * DRIVE_SPEED * 2, 1600);
+        driveForwardByTime(-DRIVE_SPEED, 500);
+        spin(redTeam, 2000);
+        driveForwardByTime(DRIVE_SPEED * 2, 1500);
+        turnByTime(redTeam, DRIVE_SPEED, 2250);
+        moveArmByTime(0.75, 2000);
+        driveForwardByTime(DRIVE_SPEED * 2, 1300);
+        moveArmByTime(-0.3,   350);
+        Thread.sleep(100);
+        claw.setPosition(0.0);
+        moveArmByTime(0.5, 350);
+        driveForwardByTime(-DRIVE_SPEED * 2, 1300);
+        strafeRightByTime(direction * DRIVE_SPEED, 1500);
+    }
+
+    public void baseHubWarehouse(boolean redTeam) throws InterruptedException {
+        claw.setPosition(1.0);
+        moveArmByTime(0.5, 1500);
+        driveForwardByTime(DRIVE_SPEED, 1000);
+        turnByTime(!redTeam, DRIVE_SPEED, 850);
+        driveForwardByTime(DRIVE_SPEED * 1.5, 1300);
+        moveArmByTime(-0.3, 250);
+        claw.setPosition(0.0);
+        moveArmByTime(0.5, 350);
+        driveForwardByTime(-DRIVE_SPEED, 1000);
+        turnByTime(redTeam, DRIVE_SPEED, 3000);
+        driveForwardByTime(3 * DRIVE_SPEED, 1800);
+    }
+
+    public void baseWarehousePark(boolean redTeam) throws InterruptedException {
+        claw.setPosition(1.0);
+        moveArmByTime(0.5, 1500);
+        driveForwardByTime(DRIVE_SPEED, 1000);
+        moveArmByTime(0.5, 350);
+        turnByTime(redTeam, DRIVE_SPEED, 1000);
+        driveForwardByTime(3 * DRIVE_SPEED, 1800);
     }
 }
