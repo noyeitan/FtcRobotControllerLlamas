@@ -12,7 +12,26 @@ public class BlueDuckHubPark extends LinearOpMode {
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap, this);
 
-        waitForStart();
-        robot.baseDuckHubPark(false);
+        robot.claw.setPosition(1.0);
+        Thread.sleep(700);
+        robot.moveArmByTime(0.75, 2000);
+        //       if (!redTeam){
+        //rotate();
+        // }
+        robot.strafeLeftByTime( -robot.DRIVE_SPEED * 1.5, 1650);
+        robot.driveForwardByTime(-robot.DRIVE_SPEED, 500);
+        robot.spin(!clockwise, -3800);
+        robot.driveForwardByTime(robot.DRIVE_SPEED * 2, 1500);
+        robot.turnByTime(turnRight-robot.DRIVE_SPEED, 2000);
+        robot.moveArmByTime(0.75, 2000);
+        robot.driveForwardByTime(robot.DRIVE_SPEED * 2, 1200);
+        robot.moveArmByTime(-0.3,   350);
+        Thread.sleep(100);
+        robot.claw.setPosition(0.0);
+        robot.moveArmByTime(0.5, 350);
+        robot.driveForwardByTime(-robot.DRIVE_SPEED * 2, 1300);
+        robot.strafeRightByTime( robot.DRIVE_SPEED, 1000);
     }
+
 }
+

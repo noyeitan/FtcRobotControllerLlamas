@@ -200,9 +200,9 @@ public class Teleop extends LinearOpMode {
             }
 
             if (G2leftTrigger > 0) {
-                robot.spinner.setPower(0.3);
+                robot.spinner.setPower(0.6);
             } else if (G2rightTrigger > 0) {
-                robot.spinner.setPower(-0.3);
+                robot.spinner.setPower(-0.6);
             } else {
                 robot.spinner.setPower(0);
             }

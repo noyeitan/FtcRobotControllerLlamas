@@ -3,7 +3,7 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
-@Autonomous(name = "RED/HubWarehouse@1", group = "12806")
+@Autonomous(name = "RED/HubWarehouse@5", group = "12806")
 public class RedHubWarehouse extends LinearOpMode {
 
     Robokenbot robot = new Robokenbot();
