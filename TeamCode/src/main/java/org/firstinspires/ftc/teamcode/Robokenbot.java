@@ -505,9 +505,6 @@ public class Robokenbot
         claw.setPosition(1.0);
         Thread.sleep(700);
         moveArmByTime(0.75, 2000);
- //       if (!redTeam){
-            //rotate();
-       // }
         strafeLeftByTime(direction * DRIVE_SPEED * 1.5, 1650);
         driveForwardByTime(-DRIVE_SPEED, 500);
         spin(redTeam, 3800);
