@@ -11,27 +11,30 @@ public class BlueDuckHubPark extends LinearOpMode {
     @Override
     public void runOpMode() throws InterruptedException {
         robot.init(hardwareMap, this);
+        waitForStart();
 
         robot.claw.setPosition(1.0);
         Thread.sleep(700);
-        robot.moveArmByTime(0.75, 2000);
-        robot.driveForwardByTime(robot.DRIVE_SPEED * 2, 1150);
+        robot.moveArmByTime(1, 2000);
+        robot.arm.setPower(0.2);
+        robot.driveForwardByTime(robot.DRIVE_SPEED * 2, 1100);
         robot.moveArmByTime(-0.3, 350);
-//        Thread.sleep(100);
         robot.claw.setPosition(0.0);
-        Thread.sleep(500);
-  //      robot.claw.setPosition(1.0);
-        robot.moveArmByTime(0.50, 2000);
-        robot.driveForwardByTime(-robot.DRIVE_SPEED * 2, 200);
-        robot.turnLeftByTime(robot.DRIVE_SPEED, 1900 );
+        Thread.sleep(400);
+        robot.moveArmByTime(0.75, 500);
+        robot.driveForwardByTime(-robot.DRIVE_SPEED * 2, 400);
+        robot.turnLeftByTime(robot.DRIVE_SPEED, 1700 );
         robot.driveForwardByTime(-robot.DRIVE_SPEED * 2, 2600);
         robot.strafeLeftByTime(robot.DRIVE_SPEED * 2, 1150);
-        robot.spin(true, 3800);
+        robot.strafeLeftByTime(robot.DRIVE_SPEED * 0.5, 150);
+        robot.spin(false, 3800);
         if (true) {
             robot.strafeRightByTime(robot.DRIVE_SPEED * 2, 1500);
         } else {
-            robot.strafeRightByTime(robot.DRIVE_SPEED * 2, 50);
-            robot.driveForwardByTime(robot.DRIVE_SPEED * 2, 3500 );
+            robot.strafeRightByTime(robot.DRIVE_SPEED * 2, 1500);
+            robot.moveArmByTime(1, 2000);
+            robot.arm.setPower(0.2);
+            robot.driveForwardByTime(robot.DRIVE_SPEED * 2, 4500 );
         }
 
 

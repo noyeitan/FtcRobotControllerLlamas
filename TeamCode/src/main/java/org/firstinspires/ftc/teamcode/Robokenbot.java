@@ -358,9 +358,9 @@ public class Robokenbot
      public void spin(boolean clockwise, long time) throws InterruptedException {
          double power;
          if (clockwise) {
-             power = 0.3;
+             power = 0.4;
          } else {
-             power = -0.3;
+             power = -0.4;
          }
          spinner.setPower(power);
          Thread.sleep(time);
@@ -504,13 +504,13 @@ public class Robokenbot
 
         claw.setPosition(1.0);
         Thread.sleep(700);
-        moveArmByTime(0.75, 2000);
-        strafeLeftByTime(direction * DRIVE_SPEED * 1.5, 1650);
+        moveArmByTime(1, 2000);
+        strafeLeftByTime(direction * DRIVE_SPEED * .5, 300);
         driveForwardByTime(-DRIVE_SPEED, 500);
         spin(redTeam, 3800);
         driveForwardByTime(DRIVE_SPEED * 2, 1500);
         turnByTime(redTeam, DRIVE_SPEED, 2000);
-        moveArmByTime(0.75, 2000);
+        moveArmByTime(1, 2000);
         driveForwardByTime(DRIVE_SPEED * 2, 1200);
         moveArmByTime(-0.3,   350);
         Thread.sleep(100);
@@ -523,24 +523,27 @@ public class Robokenbot
     public void baseHubWarehouse(boolean redTeam) throws InterruptedException {
         claw.setPosition(1.0);
         Thread.sleep(500);
-        moveArmByTime(0.75, 2000);
+        moveArmByTime(1, 2000);
+        arm.setPower(0.2);
         driveForwardByTime(DRIVE_SPEED, 1000);
         turnByTime(!redTeam, DRIVE_SPEED, 750);
         driveForwardByTime(DRIVE_SPEED * 1.5, 1200);
-        moveArmByTime(-0.3, 250);
+        moveArmByTime(-0.3, 350);
         claw.setPosition(0.0);
-        moveArmByTime(0.75, 2000);
+        Thread.sleep(250);
+        moveArmByTime(1, 2000);
+        arm.setPower(0.2);
         driveForwardByTime(-DRIVE_SPEED, 1000);
-        turnByTime(redTeam, DRIVE_SPEED, 2500);
+        turnByTime(redTeam, DRIVE_SPEED, 2800);
         driveForwardByTime(3 * DRIVE_SPEED, 1500);
     }
 
     public void baseWarehousePark(boolean redTeam) throws InterruptedException {
         claw.setPosition(1.0);
         Thread.sleep(500);
-        moveArmByTime(0.75, 2000);
+        moveArmByTime(1, 2000);
         driveForwardByTime(DRIVE_SPEED, 2000);
-        moveArmByTime(0.75,2000);
+        moveArmByTime(1,2000);
         turnByTime(redTeam, DRIVE_SPEED, 1700);
         driveForwardByTime(3 * DRIVE_SPEED, 1800);
     }
