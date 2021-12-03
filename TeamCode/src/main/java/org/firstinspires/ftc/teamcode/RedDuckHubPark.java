@@ -13,6 +13,6 @@ public class RedDuckHubPark extends LinearOpMode {
         robot.init(hardwareMap, this);
 
         waitForStart();
-        robot.baseDuckHubPark(true);
+        robot.baseDuckHubParkA(true);
     }
 }

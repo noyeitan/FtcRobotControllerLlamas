@@ -495,7 +495,8 @@ public class Robokenbot
 
     }
 
-    public void baseDuckHubPark(boolean redTeam) throws InterruptedException {
+    public void baseDuckHubParkA(boolean redTeam) throws InterruptedException {
+        ///19 points with storage unit - 26 points with warehouse
         int direction = 1;
 
         if (!redTeam) {
@@ -517,10 +518,50 @@ public class Robokenbot
         claw.setPosition(0.0);
         moveArmByTime(0.5, 350);
         driveForwardByTime(-DRIVE_SPEED * 2, 1300);
-        strafeRightByTime(direction * DRIVE_SPEED, 1000);
+        if (true) {
+            strafeRightByTime(direction * DRIVE_SPEED, 1000);
+        }
+        else {
+            strafeRightByTime(direction * DRIVE_SPEED, 500);
+            driveForwardByTime(DRIVE_SPEED * 2, 4500);
+        }
+
+    }
+
+    public void baseDuckHubParkB(boolean redTeam) throws InterruptedException {
+        ///19 points with storage unit - 26 points with warehouse
+        int direction = 1;
+
+        if (!redTeam) {
+            direction = -1;
+        }
+
+        claw.setPosition(1.0);
+        Thread.sleep(700);
+        moveArmByTime(1, 2000);
+        strafeLeftByTime(direction * DRIVE_SPEED * .5, 300);
+        driveForwardByTime(-DRIVE_SPEED, 500);
+        spin(redTeam, 3800);
+        driveForwardByTime(DRIVE_SPEED * 2, 1500);
+        turnByTime(redTeam, DRIVE_SPEED, 2000);
+        moveArmByTime(1, 2000);
+        driveForwardByTime(DRIVE_SPEED * 2, 1200);
+        moveArmByTime(-0.3,   350);
+        Thread.sleep(100);
+        claw.setPosition(0.0);
+        moveArmByTime(0.5, 350);
+        driveForwardByTime(-DRIVE_SPEED * 2, 1300);
+        strafeLeftByTime(direction * DRIVE_SPEED, 1000);
+        driveForwardByTime(DRIVE_SPEED, 4500);
+        turnRightByTime(DRIVE_SPEED, 1300);
+        driveForwardByTime(DRIVE_SPEED * 2,500);
+
+
+
     }
 
     public void baseHubWarehouse(boolean redTeam) throws InterruptedException {
+        // 16 points
         claw.setPosition(1.0);
         Thread.sleep(500);
         moveArmByTime(1, 2000);
@@ -539,6 +580,7 @@ public class Robokenbot
     }
 
     public void baseWarehousePark(boolean redTeam) throws InterruptedException {
+        // 10 points
         claw.setPosition(1.0);
         Thread.sleep(500);
         moveArmByTime(1, 2000);
